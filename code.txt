@@ -1,0 +1,22 @@
+val holidays = sc.textFile("/home/acadgild/Desktop/assignments/session18/assignment1/S18_Dataset_Holidays.txt")
+val holidays1 = holidays.map(x => x.split(",")).map(array => (array(0), array(1), array(2), array(3), array(4), array(5)))
+val holidays2 = holidays1.map(x => x._6)
+val Result = holidays2.countByValue
+
+=======
+
+val holidays = sc.textFile("/home/acadgild/Desktop/assignments/session18/assignment1/S18_Dataset_Holidays.txt")
+val holidays1 = holidays.map(x => x.split(",")).map(array => (array(0), array(1), array(2), array(3), array(4), array(5)))
+val result = holidays1.map(x => ((x._1),(x._5.toInt))).reduceByKey((x,y) => x+y).sortByKey().take(1)
+
+========
+
+val holidays = sc.textFile("/home/acadgild/Desktop/assignments/session18/assignment1/S18_Dataset_Holidays.txt")
+val holidays1 = holidays.map(x => x.split(",")).map(array => (array(0), array(1), array(2), array(3), array(4), array(5)))
+val result = holidays1.map(x => x._3).countByValue
+
+========
+
+val holidays = sc.textFile("/home/acadgild/Desktop/assignments/session18/assignment1/S18_Dataset_Holidays.txt")
+val holidays1 = holidays.map(x => x.split(",")).map(array => (array(0), array(1), array(2), array(3), array(4), array(5)))
+val data = holidays1.map(x => ((x._6),(x._5.toInt))).reduceByKey((x,y) => x+y)
